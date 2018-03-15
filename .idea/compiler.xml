@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="JeeRestServer" />
+        <module name="JeeRestServer_campusid" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="JeeRestServer" target="1.8" />
+      <module name="JeeRestServer_campusid" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
