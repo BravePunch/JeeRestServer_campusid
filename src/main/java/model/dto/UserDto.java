@@ -1,6 +1,8 @@
 package model.dto;
 
-public abstract class UserDto {
+import java.util.Objects;
+
+public class UserDto {
 
     /* ----- ATTRIBUTES */
 
@@ -11,9 +13,6 @@ public abstract class UserDto {
     private String lastName;
 
     private String email;
-
-    private MetadataDto metadata;
-
 
 
     /* -----GETTERS/SETTERS */
@@ -50,12 +49,33 @@ public abstract class UserDto {
         this.email = email;
     }
 
-    public MetadataDto getMetadata() {
-        return metadata;
+
+    /* ----- UTILS */
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserDto userDto = (UserDto) o;
+        return id == userDto.id &&
+                Objects.equals(firstName, userDto.firstName) &&
+                Objects.equals(lastName, userDto.lastName) &&
+                Objects.equals(email, userDto.email);
     }
 
-    public void setMetadata(MetadataDto metadata) {
-        this.metadata = metadata;
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, firstName, lastName, email);
     }
 
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

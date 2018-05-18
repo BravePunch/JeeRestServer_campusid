@@ -1,13 +1,15 @@
 package model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 
 @Entity
 @Inheritance
-public abstract class User {
+public class User {
 
     /* ----- ATTRIBUTES */
 
@@ -21,6 +23,9 @@ public abstract class User {
 
     @Email
     private String email;
+
+    @JsonIgnore
+    private String password;
 
     private Metadata metadata;
 
@@ -60,6 +65,14 @@ public abstract class User {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Metadata getMetadata() {
         return metadata;
     }
@@ -68,4 +81,37 @@ public abstract class User {
         this.metadata = metadata;
     }
 
+
+    /* ----- UTILS */
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(metadata, user.metadata);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, firstName, lastName, email, password, metadata);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", metadata=" + metadata +
+                '}';
+    }
 }
