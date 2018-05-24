@@ -3,13 +3,11 @@ package model.entity;
 import model.enums.DataStatus;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Embeddable
 public class Metadata {
 
     /* ----- ATTRIBUTES */
@@ -25,7 +23,6 @@ public class Metadata {
 
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date deletionDate;
-
 
 
     /* ----- GETTERS/SETTERS */
