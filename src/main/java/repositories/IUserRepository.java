@@ -3,7 +3,9 @@ package repositories;
 import model.entity.User;
 import model.enums.DataStatus;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface IUserRepository extends CrudRepository<User, Long> {
 
     User findByFirstName(String firstName);
